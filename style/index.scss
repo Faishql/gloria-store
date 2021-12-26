@@ -1,0 +1,113 @@
+@import "modules/variables";
+@import "modules/fonts";
+@import "modules/mixins";
+
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "Roboto Mono", monospace;
+}
+body {
+    width: 100%;
+}
+.container {
+    width: 100%;
+    padding: 0;
+    .custom-nav {
+        height: 120px;
+        width: 100%;
+        border: 2px solid $primaryColor;
+        padding: 0;
+        margin: 0;
+        a.navbar-brand {
+            @include typography(32px, 700);
+            margin-left: 50px;
+        }
+        .navbar-nav {
+            a.nav-link {
+                @include typography(18px, 700);
+                padding: 0;
+            }
+        }
+        .navbar-nav > * {
+            margin-right: 50px;
+        }
+    }
+}
+
+.hero {
+    & &-img {
+        margin: 50px 0;
+        width: 100%;
+        height: 420px;
+        background-color: lighten($primaryColor, 60%);
+    }
+}
+
+@import "modules/new-arrivals";
+@import "modules/about";
+@import "modules/collection";
+@import "modules/other-pages";
+@import "modules/admin";
+
+footer {
+    @include border(border-all);
+    margin: 120px 0;
+    .wrapper {
+        @include border(border-right);
+        height: 100%;
+        .contact {
+            @include border(border-bottom);
+            // height: 200px;
+            max-width: 100%;
+            padding: 50px;
+            text-align: center;
+            h3 {
+                @include typography(48px, 500);
+                margin-bottom: 30px;
+            }
+            .row {
+                padding: 0 30px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                // margin: 0;
+                p {
+                    @include typography(20px, 400);
+                    text-align: center;
+                    margin: 0;
+                }
+                p.text-bold {
+                    @include typography(20px, 500);
+                }
+            }
+        }
+        .find-us {
+            // height: 200px;
+            max-width: 100%;
+            width: 100%;
+            padding: 50px;
+            text-align: center;
+            h3 {
+                @include typography(48px, 500);
+                margin-bottom: 30px;
+            }
+            .row {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                p {
+                    @include typography(20px, 500);
+                    margin: 0;
+                }
+                p.addres {
+                    @include typography(18px, 400);
+                    margin-top: 10px;
+                }
+            }
+        }
+    }
+}

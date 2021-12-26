@@ -1,0 +1,40 @@
+.new-arrivals {
+    width: 100%;
+    border: 2px solid $primaryColor;
+    .new-arrivals-header {
+        width: 100%;
+        height: 120px;
+        border-bottom: 2px solid $primaryColor;
+        h2 {
+            @include typography(64px, 500);
+            text-transform: uppercase;
+            line-height: 120px;
+            margin-left: 50px;
+        }
+    }
+    .carousel-custom {
+        width: 100%;
+        padding: 30px 0;
+        .product-item {
+            @include product(360px, 360px, 85%);
+        }
+    }
+    .carousel-control-prev {
+        // height: 100%;
+        // width: 85px;
+        padding: 0;
+        margin: 0;
+        background-color: $bg-color;
+        opacity: 100%;
+        border-right: 2px solid $primaryColor;
+    }
+    .carousel-control-next {
+        // height: 100%;
+        // width: 85px;
+        padding: 0;
+        margin: 0;
+        background-color: $bg-color;
+        opacity: 100%;
+        border-left: 2px solid $primaryColor;
+    }
+}

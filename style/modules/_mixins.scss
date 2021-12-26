@@ -1,0 +1,112 @@
+@mixin typography($size, $weight, $color: $primaryColor) {
+    color: $color;
+    font-size: $size;
+    font-weight: $weight;
+    text-transform: uppercase;
+
+    // &:hover {
+    //     color: lighten(#333, 20%);
+    // }
+}
+@mixin btn-primary($height, $width, $letter-spacing: 0.08em) {
+    color: $bg-color;
+    background-color: $primaryColor;
+    letter-spacing: $letter-spacing;
+    padding: 0;
+    height: $height;
+    width: $width;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin btn-outlined($height, $width, $letter-spacing: 0.08em) {
+    padding: 0;
+    width: $width;
+    height: $height;
+    letter-spacing: $letter-spacing;
+    border: 2px solid $primaryColor;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include typography(20px, 500);
+}
+
+@mixin header($width: 100%, $height: 120px) {
+    width: $width;
+    height: $height;
+    border-bottom: 2px solid $primaryColor;
+    h2 {
+        @include typography(64px, 500);
+        text-transform: uppercase;
+        line-height: 120px;
+        margin-left: 50px;
+    }
+    p {
+        @include typography(20px, 500);
+        text-transform: uppercase;
+        line-height: 60px;
+        text-align: center;
+    }
+}
+
+@mixin product($width, $height, $btn-width) {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    img {
+        height: $height;
+        width: $width;
+    }
+    .product-info {
+        width: $width;
+        padding: 0;
+        margin-top: 30px;
+        position: unset;
+
+        .product-title {
+            display: flex;
+            justify-content: space-between;
+            p {
+                @include typography(20px, 500);
+                text-transform: uppercase;
+                margin: 0;
+            }
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            width: $width;
+            a.show-detail {
+                @include btn-outlined(50px, $btn-width);
+            }
+            a.cart {
+                @include btn-primary(50px, 50px, 0);
+            }
+        }
+    }
+}
+// .product-item:not(:last-child) {
+//     border-right: 2px solid $primaryColor;
+// }
+
+@mixin border($direction) {
+    @if $direction == border-right {
+        border-right: 2px solid $primaryColor;
+    } @else if $direction == border-left {
+        border-left: 2px solid $primaryColor;
+    } @else if $direction == border-bottom {
+        border-bottom: 2px solid $primaryColor;
+    } @else if $direction == border-top {
+        border-top: 2px solid $primaryColor;
+    } @else if $direction == border-all {
+        border: 2px solid $primaryColor;
+    } @else {
+        border: none;
+    }
+}
