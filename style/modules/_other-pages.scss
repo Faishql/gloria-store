@@ -1,5 +1,5 @@
 .login {
-    width: 30%;
+    width: 360px;
     @include border(border-all);
     padding: 30px 0;
 
@@ -21,21 +21,21 @@
     form {
         padding: 0 30px;
         button {
-            @include btn-primary( 52px, 100%);
+            @include btn-primary(52px, 100%);
             margin-top: 30px;
         }
     }
 }
 
 button.back {
-    @include btn-primary( 52px, 100%);
+    @include btn-primary(52px, 100%);
 }
 
 .container.create {
     margin-bottom: 120px;
-    
+
     a {
-        @include btn-primary( 50px, 160px);
+        @include btn-primary(50px, 160px);
     }
     .wrapper {
         @include border(border-all);
@@ -54,10 +54,41 @@ button.back {
         form {
             padding: 0 30px;
             button {
-                @include btn-primary( 52px, 100%);
+                @include btn-primary(52px, 100%);
                 margin-top: 30px;
             }
         }
     }
-    
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .login {
+        width: 90%;
+        @include border(border-all);
+        // padding: 20px 0;
+
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        h1 {
+            @include typography(36px, 500);
+            text-transform: uppercase;
+            // padding: 0 20px 20px;
+            margin: 0;
+        }
+        hr {
+            @include border(border-top);
+            width: 100%;
+            margin: 0;
+        }
+        form {
+            // padding: 0 20px;
+            button {
+                @include btn-primary(52px, 100%);
+                margin-top: 30px;
+            }
+        }
+    }
 }

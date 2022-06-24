@@ -1,73 +1,61 @@
 <?php
 
 session_start();
-require 'php/functions/functions.php';
+require "php/functions/functions.php";
 
-if ( isset($_COOKIE['key']) && isset($_COOKIE['key_name'])) {
-  $key = $_COOKIE['key'];
-  $key_name = $_COOKIE['key_name'];
+if (isset($_COOKIE["key"]) && isset($_COOKIE["key_name"])) {
+    $key = $_COOKIE["key"];
+    $key_name = $_COOKIE["key_name"];
 
-  $result = mysqli_query( $conn, " SELECT * FROM user WHERE id = '$key'");
-  $row = mysqli_fetch_assoc($result);
+    $result = mysqli_query($conn, " SELECT * FROM user WHERE id = '$key'");
+    $row = mysqli_fetch_assoc($result);
 
-  if ( hash( 'whirlpool', $row['username']) === $key_name  ) {
-    $_SESSION['level'] = $row['level'];
-  } else {
-    echo "
+    if (hash("whirlpool", $row["username"]) === $key_name) {
+        $_SESSION["level"] = $row["level"];
+    } else {
+        echo "
     <script>
       alert('error');
     </script>
     ";
-  }
+    }
 }
 
-
-
-if ( isset($_SESSION['level'])) {
-  
-  if ( $_SESSION['level'] == 'user') {
-    header('Location: index.php');
-    exit;
-  } else if ( $_SESSION['level'] == 'admin') {
-    header('Location: admin/index.php');
-    exit;
-  } 
-  
-} 
-
-
-
-if ( isset($_POST['submit'])) {
-
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-
-  $result = mysqli_query( $conn, " SELECT * FROM user WHERE username = '$username'");
-  $row = mysqli_fetch_assoc($result);
-
-  
-  if ( mysqli_num_rows($result) === 1 ) {
-
-    if ( password_verify( $password, $row['password'])) {
-
-      if ( isset($_POST['remember'])) {
-
-        setcookie( 'key', $row['id'], time()+3600);
-        setcookie( 'key_name', hash( 'whirlpool', $row['username']) , time()+3600);
-
-      }
-      $_SESSION['level'] = $row['level'];
-
-        if ( $_SESSION['level'] === 'user') {
-          header('Location: index.php');
-          exit;
-        } else if ( $_SESSION['level'] === 'admin') {
-          header('Location: admin/index.php');
-          exit;
-        } 
+if (isset($_SESSION["level"])) {
+    if ($_SESSION["level"] == "user") {
+        header("Location: index.php");
+        exit();
+    } elseif ($_SESSION["level"] == "admin") {
+        header("Location: admin/index.php");
+        exit();
     }
-  }
-$error = true;
+}
+
+if (isset($_POST["submit"])) {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($conn, " SELECT * FROM user WHERE username = '$username'");
+    $row = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) === 1) {
+        if (password_verify($password, $row["password"])) {
+            if (isset($_POST["remember"])) {
+                setcookie("key", $row["id"], time() + 3600);
+                setcookie("key_name", hash("whirlpool", $row["username"]), time() + 3600);
+            }
+            $_SESSION["level"] = $row["level"];
+
+            if ($_SESSION["level"] === "user") {
+                header("Location: index.php");
+                exit();
+            } elseif ($_SESSION["level"] === "admin") {
+                header("Location: admin/index.php");
+                exit();
+            }
+        }
+    }
+    $error = true;
 }
 ?>
 
@@ -81,13 +69,13 @@ $error = true;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style/index.css">
     
-    <title>Hello, world!</title>
+    <title>GLORIA STORE - LOGIN</title>
   </head>
   <body>
   <div class="login">
           <h1>LOGIN</h1>
           <hr>
-          <?php if ( isset($error) ) : ?>
+          <?php if (isset($error)): ?>
             <p style="color: red; font-style: italic;">username / password is wrong</p>
           <?php endif; ?>
             <form action="" method="post" class="mt-5">

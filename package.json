@@ -1,0 +1,16 @@
+{
+    "name": "package.json",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "prettier": "^2.7.1"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "prettier": "prettier",
+        "format": "npm run prettier -- path/to/file.php --write"
+    },
+    "author": "",
+    "license": "ISC"
+}

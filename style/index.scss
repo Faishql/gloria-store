@@ -10,37 +10,114 @@
 body {
     width: 100%;
 }
+
+.custom-nav {
+    height: 118px;
+    width: 90%;
+    border: 2px solid $primaryColor;
+    padding: 0;
+    margin: 0 auto;
+    a.navbar-brand {
+        @include typography(32px, 700);
+        margin-left: 50px;
+    }
+    .navbar-nav {
+        a.nav-link {
+            @include typography(18px, 700);
+            padding: 0;
+        }
+    }
+    .navbar-nav > * {
+        margin-right: 50px;
+    }
+}
 .container {
     width: 100%;
     padding: 0;
-    .custom-nav {
-        height: 120px;
-        width: 100%;
-        border: 2px solid $primaryColor;
-        padding: 0;
-        margin: 0;
-        a.navbar-brand {
-            @include typography(32px, 700);
-            margin-left: 50px;
-        }
-        .navbar-nav {
-            a.nav-link {
-                @include typography(18px, 700);
-                padding: 0;
-            }
-        }
-        .navbar-nav > * {
-            margin-right: 50px;
+
+    section.hero {
+        div.hero-img {
+            margin: 50px 0;
+            width: 100%;
+            height: 420px;
+            background-color: lighten($primaryColor, 60%);
         }
     }
-}
 
-.hero {
-    & &-img {
-        margin: 50px 0;
-        width: 100%;
-        height: 420px;
-        background-color: lighten($primaryColor, 60%);
+    footer {
+        @include border(border-all);
+        margin: 120px 0;
+        .wrapper {
+            @include border(border-right);
+            height: 100%;
+            .contact {
+                @include border(border-bottom);
+                // height: 200px;
+                max-width: 100%;
+                padding: 50px;
+                text-align: center;
+                h3 {
+                    @include typography(48px, 500);
+                    margin-bottom: 30px;
+                }
+                .row {
+                    padding: 0 30px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    // margin: 0;
+                    p {
+                        @include typography(20px, 400);
+                        text-align: center;
+                        margin: 0;
+                    }
+                    p.text-bold {
+                        @include typography(20px, 500);
+                    }
+                }
+            }
+            .find-us {
+                // height: 200px;
+                max-width: 100%;
+                width: 100%;
+                padding: 50px;
+                text-align: center;
+                h3 {
+                    @include typography(48px, 500);
+                    margin-bottom: 30px;
+                }
+                .row {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin: 0;
+                    p {
+                        @include typography(20px, 500);
+                        margin: 0;
+                    }
+                    p.addres {
+                        @include typography(18px, 400);
+                        margin-top: 10px;
+                    }
+                }
+            }
+        }
+    }
+
+    .modal-header#cart-header {
+        padding: 0;
+        @include header(42px, 100%, 90px);
+        h2 {
+            margin-left: 30px;
+        }
+    }
+
+    .modal-footer {
+        button.add {
+            @include btn-primary(50px, 100%);
+        }
     }
 }
 
@@ -48,65 +125,138 @@ body {
 @import "modules/about";
 @import "modules/collection";
 @import "modules/other-pages";
+@import "modules/detail";
 @import "modules/admin";
 
-footer {
-    @include border(border-all);
-    margin: 120px 0;
-    .wrapper {
-        @include border(border-right);
-        height: 100%;
-        .contact {
-            @include border(border-bottom);
-            // height: 200px;
-            max-width: 100%;
-            padding: 50px;
-            text-align: center;
-            h3 {
-                @include typography(48px, 500);
-                margin-bottom: 30px;
-            }
-            .row {
-                padding: 0 30px;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                // margin: 0;
-                p {
-                    @include typography(20px, 400);
-                    text-align: center;
-                    margin: 0;
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .custom-nav {
+        height: 90px;
+        width: 100%;
+        margin: 0 auto;
+        border: none;
+        align-items: center !important;
+        line-height: 90px;
+        border-bottom: 2px solid $primaryColor;
+
+        a.navbar-brand {
+            @include typography(28px, 700);
+            margin-left: 20px;
+            padding: 0;
+        }
+        button.navbar-toggler {
+            margin-right: 20px;
+        }
+        .navbar-collapse {
+            background-color: $bg-color;
+
+            .navbar-nav {
+                a.nav-link {
+                    @include typography(18px, 700);
+                    padding: 0;
+                    p {
+                        display: block;
+                    }
                 }
-                p.text-bold {
-                    @include typography(20px, 500);
+            }
+            .navbar-nav > * {
+                width: 100%;
+                height: 60px;
+                margin-right: 0;
+                line-height: 60px;
+                border-bottom: 2px solid $primaryColor;
+                padding: 0 20px !important;
+            }
+        }
+    }
+    .container {
+        width: 90%;
+        padding: 0;
+        margin: 0 auto;
+
+        section.hero {
+            div.hero-img {
+                margin: 50px 0;
+                width: 100%;
+                height: 420px;
+                background-color: lighten($primaryColor, 60%);
+            }
+        }
+
+        footer {
+            @include border(border-all);
+            margin: 120px 0;
+            flex-direction: column;
+            .wrapper {
+                border-right: none;
+                height: 100%;
+                .contact {
+                    // height: 200px;
+                    max-width: 100%;
+                    padding: 50px;
+                    text-align: center;
+                    h3 {
+                        @include typography(36px, 500);
+                        margin-bottom: 30px;
+                    }
+                    .row {
+                        padding: 0 30px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: space-around;
+                        align-items: center;
+                        // margin: 0;
+                        p {
+                            @include typography(18px, 400);
+                            text-align: center;
+                            margin: 0;
+                        }
+                        p.text-bold {
+                            @include typography(18px, 500);
+                        }
+                    }
+                }
+                .find-us {
+                    // height: 200px;
+                    max-width: 100%;
+                    width: 100%;
+                    padding: 50px;
+                    text-align: center;
+                    h3 {
+                        @include typography(36px, 500);
+                        margin-bottom: 30px;
+                    }
+                    .row {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin: 0;
+                        p {
+                            @include typography(24px, 500);
+                            margin: 0;
+                        }
+                        p.addres {
+                            @include typography(18px, 400);
+                            margin-top: 10px;
+                        }
+                    }
                 }
             }
         }
-        .find-us {
-            // height: 200px;
-            max-width: 100%;
-            width: 100%;
-            padding: 50px;
-            text-align: center;
-            h3 {
-                @include typography(48px, 500);
-                margin-bottom: 30px;
+
+        .modal-header#cart-header {
+            padding: 0;
+            @include header(32px, 100%, 90px);
+            h2 {
+                margin-left: 20px;
+                font-weight: 700;
             }
-            .row {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 0;
-                p {
-                    @include typography(20px, 500);
-                    margin: 0;
-                }
-                p.addres {
-                    @include typography(18px, 400);
-                    margin-top: 10px;
-                }
+        }
+
+        .modal-footer {
+            button.add {
+                @include btn-primary(50px, 100%);
             }
         }
     }

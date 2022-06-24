@@ -15,18 +15,16 @@
 -->
 
 <?php
-
 session_start();
 
-require '../php/functions/functions.php';
+require "../php/functions/functions.php";
 
-if ( !isset($_SESSION['level'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION["level"])) {
+    header("Location: ../login.php");
 }
 
-$db = 'user';
+$db = "user";
 $users = read(" SELECT * FROM $db");
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -184,15 +182,15 @@ $users = read(" SELECT * FROM $db");
                 </thead>
                 <tbody class="list">
                   <?php $no = 1; ?>
-                  <?php foreach( $users as $user) : ?>
+                  <?php foreach ($users as $user): ?>
                   <tr>
                     <td><?= $no++ ?></td>
-                    <td><?= $user['username'] ?></td>
-                    <td><?= $user['level'] ?></td>
-                    <td><?= $user['created']  ?></td>
+                    <td><?= $user["username"] ?></td>
+                    <td><?= $user["level"] ?></td>
+                    <td><?= $user["created"] ?></td>
                     <td>
                         <button class="btn btn-primary">Detail</button>
-                        <a href="../php/delete.php?id=<?= $user['id']; ?>&db=<?= $db; ?>" onclick=" return confirm('delete?')" class="btn btn-danger">Delete</a>
+                        <a href="../php/delete.php?id=<?= $user["id"] ?>&db=<?= $db ?>" onclick=" return confirm('delete?')" class="btn btn-danger">Delete</a>
                     </td>
 
                   </tr>

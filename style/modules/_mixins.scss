@@ -19,41 +19,41 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    text-transform: uppercase;
 }
 
-@mixin btn-outlined($height, $width, $letter-spacing: 0.08em) {
+@mixin btn-outlined($height, $width, $font-size: 20px) {
     padding: 0;
     width: $width;
     height: $height;
-    letter-spacing: $letter-spacing;
+    letter-spacing: 0.08em;
     border: 2px solid $primaryColor;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    @include typography(20px, 500);
+    @include typography($font-size, 500);
 }
 
-@mixin header($width: 100%, $height: 120px) {
+@mixin header($size: 64px, $width: 100%, $height: 120px) {
     width: $width;
     height: $height;
     border-bottom: 2px solid $primaryColor;
     h2 {
-        @include typography(64px, 500);
+        @include typography($size, 500);
         text-transform: uppercase;
-        line-height: 120px;
-        margin-left: 50px;
+        line-height: $height;
+        // margin-left: 50px;
     }
     p {
-        @include typography(20px, 500);
+        @include typography($size, 500);
         text-transform: uppercase;
-        line-height: 60px;
         text-align: center;
     }
 }
 
-@mixin product($width, $height, $btn-width) {
-    padding: 0;
+@mixin product($width: 100%, $height, $btn-width, $padding: 50px, $font-size: 20px) {
+    padding: $padding;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,7 +72,7 @@
             display: flex;
             justify-content: space-between;
             p {
-                @include typography(20px, 500);
+                @include typography($font-size, 500);
                 text-transform: uppercase;
                 margin: 0;
             }
@@ -83,7 +83,7 @@
             margin-top: 10px;
             width: $width;
             a.show-detail {
-                @include btn-outlined(50px, $btn-width);
+                @include btn-outlined(50px, $btn-width, $font-size);
             }
             a.cart {
                 @include btn-primary(50px, 50px, 0);

@@ -14,9 +14,13 @@
     }
     .carousel-custom {
         width: 100%;
-        padding: 30px 0;
+        padding: 0;
         .product-item {
-            @include product(360px, 360px, 85%);
+            @include product(360px, 360px, 85%, 0);
+            padding: 30px;
+        }
+        .product-item:first-child {
+            @include border("border-right");
         }
     }
     .carousel-control-prev {
@@ -36,5 +40,66 @@
         background-color: $bg-color;
         opacity: 100%;
         border-left: 2px solid $primaryColor;
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .new-arrivals {
+        width: 100%;
+        border: 2px solid $primaryColor;
+        .new-arrivals-header {
+            width: 100%;
+            height: 90px;
+            border-bottom: 2px solid $primaryColor;
+            h2 {
+                @include typography(32px, 500);
+                text-transform: uppercase;
+                line-height: 90px;
+                margin-left: 20px;
+            }
+        }
+        .carousel-custom {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            .product-item {
+                @include product(100%, auto, 80%, 0, 18px);
+                padding: 20px;
+            }
+            .product-item:first-child {
+                @include border("border-bottom");
+                border-right: none;
+            }
+        }
+        .carousel-control-prev {
+            // height: 100%;
+            // width: 85px;
+
+            padding: 0;
+            margin: 0;
+            background-color: $bg-color;
+            opacity: 100%;
+            border: 2px solid $primaryColor;
+            top: 50%;
+            right: 100%;
+            transform: translate(-50%, -50%);
+            height: 60px;
+            width: 60px;
+        }
+        .carousel-control-next {
+            // height: 100%;
+            // width: 85px;
+            padding: 0;
+            margin: 0;
+            background-color: $bg-color;
+            opacity: 100%;
+            border: 2px solid $primaryColor;
+            top: 50%;
+            left: 100%;
+            transform: translate(-50%, -50%);
+            height: 60px;
+            width: 60px;
+        }
     }
 }

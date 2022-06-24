@@ -1,0 +1,136 @@
+.detail {
+    height: 560px;
+    width: 100%;
+    margin: 50px 0;
+    @include border(border-all);
+    &-image {
+        width: 50%;
+
+        @include border(border-right);
+        img {
+            width: 360px;
+            height: auto;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+        }
+    }
+    &-info {
+        width: 50%;
+
+        &-header {
+            @include header(2.4rem);
+            padding-left: 20px;
+        }
+        table {
+            width: 100%;
+            tr {
+                border-bottom: 1px solid lighten($primaryColor, $amount: 20%);
+                td {
+                    padding: 20px;
+                    font-size: 1.4em !important;
+                }
+            }
+            tr:last-child {
+                border-bottom: none;
+                word-break: break-all;
+            }
+        }
+        .btn-wrapper {
+            height: 120px;
+            width: 100%;
+            @include border(border-top);
+            position: absolute;
+            bottom: 0;
+
+            button {
+                @include btn-primary(60px, 80%);
+                font-size: 1.5em !important;
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+.modal-header#cart-header {
+    padding: 0;
+    @include header(42px, 100%, 90px);
+    h2 {
+        margin-left: 30px;
+    }
+}
+
+.modal-footer {
+    button.add {
+        @include btn-primary(50px, 100%);
+    }
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .detail {
+        height: auto;
+        width: 100%;
+        margin: 50px 0;
+        flex-direction: column;
+        @include border(border-all);
+        &-image {
+            @include border(border-bottom);
+            border-right: none;
+            width: 100%;
+            padding: 30px;
+            img {
+                width: 100%;
+                height: auto;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+            }
+        }
+        &-info {
+            width: 100%;
+            margin-top: 0;
+
+            &-header {
+                @include header(32px, 100%, 70px);
+                padding-left: 20px;
+            }
+            table {
+                width: 100%;
+                tr {
+                    border-bottom: 1px solid lighten($primaryColor, $amount: 20%);
+
+                    td {
+                        padding: 20px;
+                        font-size: 1em !important;
+                    }
+                }
+                tr:last-child {
+                    border-bottom: none;
+                }
+            }
+            .btn-wrapper {
+                height: 120px;
+                width: 100%;
+                @include border(border-top);
+                position: unset;
+
+                button {
+                    @include btn-primary(60px, 80%);
+                    font-size: 18px !important;
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+    .modal-header#cart-header {
+        padding: 0;
+        @include header(42px, 100%, 90px);
+        h2 {
+            margin-left: 30px;
+        }
+    }
+
+    .modal-footer {
+        button.add {
+            @include btn-primary(50px, 100%);
+        }
+    }
+}

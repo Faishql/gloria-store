@@ -39,3 +39,46 @@
         }
     }
 }
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .about {
+        margin: 120px 0 0 0;
+        padding: 0;
+        border: 2px solid $primaryColor;
+
+        & &-img {
+            border-bottom: 2px solid $primaryColor;
+            border-right: none;
+            margin: 0;
+            padding: 0;
+            img {
+                padding: 50px;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        & &-text {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0;
+            padding: 50px;
+            p {
+                @include typography(16px, 500);
+                margin: 0;
+                text-transform: none;
+            }
+            .button-about {
+                margin-top: 20px;
+                align-self: flex-start;
+                a.read-more {
+                    @include btn-primary(40px, 100%);
+                    @include typography(18px, 400, #fff);
+                    padding: 0 20px;
+                }
+            }
+        }
+    }
+}

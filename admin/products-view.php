@@ -13,20 +13,17 @@
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
-<?php 
-
+<?php
 session_start();
 
-require '../php/functions/functions.php';
+require "../php/functions/functions.php";
 
-if ( !isset($_SESSION['level'])) {
-    header('Location: ../login.php');
+if (!isset($_SESSION["level"])) {
+    header("Location: ../login.php");
 }
 
-$db = 'products';
+$db = "products";
 $products = read(" SELECT * FROM $db");
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -186,21 +183,21 @@ $products = read(" SELECT * FROM $db");
                 </thead>
                 <tbody class="list">
                   <?php $no = 1; ?>
-                  <?php foreach( $products as $product) : ?>
+                  <?php foreach ($products as $product): ?>
                   <tr>
                     <td><?= $no++ ?></td>
-                    <td ><img src="../img/<?= $product['img'] ?>" alt="" height="100" width="100"></td>
-                    <td><?= $product['product_name'] ?></td>
-                    <td><?= $product['price'] ?>&nbsp;K</td>
-                    <td><?= $product['product_desc'] ?></td>
-                    <td><?= $product['created'] ?></td>
+                    <td ><img src="../img/<?= $product["img"] ?>" alt="" height="100" width="100"></td>
+                    <td><?= $product["product_name"] ?></td>
+                    <td><?= $product["price"] ?>&nbsp;K</td>
+                    <td><?= $product["product_desc"] ?></td>
+                    <td><?= $product["created"] ?></td>
                     <td>
-                        <button class="btn btn-primary" data-target="#modal-detail-<?= $product['id'] ?>" data-toggle="modal">Detail</button>
-                        <a href="update.php?id=<?= $product['id'] ?>" class="btn btn-warning">Update</a>
-                        <a href="../php/delete.php?id=<?= $product['id'] ?>&db=<?= encryptTb($db); ?>" class="btn btn-danger" onclick="return confirm('delete?')">Delete</a>
+                        <button class="btn btn-primary" data-target="#modal-detail-<?= $product["id"] ?>" data-toggle="modal">Detail</button>
+                        <a href="update.php?id=<?= $product["id"] ?>" class="btn btn-warning">Update</a>
+                        <a href="../php/delete.php?id=<?= $product["id"] ?>&db=<?= encryptTb($db) ?>" class="btn btn-danger" onclick="return confirm('delete?')">Delete</a>
 
                         <!-- MODAL -->
-                        <div class="modal fade" id="modal-detail-<?= $product['id'] ?>" tabindex="-1" role="dialog"   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal fade" id="modal-detail-<?= $product["id"] ?>" tabindex="-1" role="dialog"   aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -222,11 +219,11 @@ $products = read(" SELECT * FROM $db");
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td><?= $product['product_name'] ?></td>
-                                    <td><?= $product['price'] ?></td>
-                                    <td><?= $product['img'] ?></td>
-                                    <td><?= $product['product_desc'] ?></td>
-                                    <td><?= $product['created'] ?></td>
+                                    <td><?= $product["product_name"] ?></td>
+                                    <td><?= $product["price"] ?></td>
+                                    <td><?= $product["img"] ?></td>
+                                    <td><?= $product["product_desc"] ?></td>
+                                    <td><?= $product["created"] ?></td>
                                   </tr>
                                         
                                 </tbody>
