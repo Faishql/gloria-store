@@ -14,18 +14,6 @@ function read($query)
     return $rows;
 }
 
-// function popular($query) {
-//     global $conn;
-//     $result = mysqli_query( $conn, $query);
-
-//     for ( $i = 0; i) {
-
-//         $rows[] = $row;
-//     }
-
-//     return $rows;
-// }
-
 function create($data)
 {
     global $conn;
@@ -163,15 +151,93 @@ function decryptTb($enc)
     return $dcr;
 }
 
+function getProducts()
+{
+    $newArrivals = read(" SELECT * FROM products ORDER BY created DESC LIMIT 4");
+
+    // var_dump($carts);
+    // die();
+
+    $temp = [];
+
+    for ($i = 0; $i <= count($newArrivals); $i++) {
+        if ($i % 2 === 0) {
+            $temp[] = [array_slice($newArrivals, $i, 2)];
+        }
+    }
+
+    return $temp;
+}
+
+function getCarts()
+{
+    global $conn;
+
+    $id_user = $_SESSION["id"];
+
+    $result = mysqli_query($conn, "SELECT carts.id_cart, products.product_name, products.price, products.img, carts.quantity FROM carts INNER JOIN products ON carts.id_product = products.id INNER JOIN user ON carts.id_user = user.id WHERE carts.id_user = $id_user");
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
+    }
+    if (isset($rows)) {
+        return $rows;
+    } else {
+        return null;
+    }
+}
+
 function addCart($data)
 {
-    $_SESSION["cart"]["id"] = [];
-    $_SESSION["cart"]["quantity"] = [];
+    // var_dump($data[1]);
+    // die();
+    global $conn;
 
-    array_push($_SESSION["cart"]["id"], $data["product_id"]);
-    array_push($_SESSION["cart"]["quantity"], $data["quantity"]);
+    $id_user = htmlspecialchars($data["id_user"]);
+    $id_product = htmlspecialchars($data["id_product"]);
+    $quantity = htmlspecialchars($data["quantity"]);
 
-    return 1;
+    $result = mysqli_query($conn, "SELECT carts.id_cart, products.product_name, products.price, products.img, carts.quantity FROM carts INNER JOIN products ON carts.id_product = products.id INNER JOIN user ON carts.id_user = user.id WHERE products.id = $id_product AND user.id = $id_user");
+    $fetch = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) === 1) {
+        $id_cart = $fetch["id_cart"];
+        $final_quantity = $fetch["quantity"] + $quantity;
+        if ($final_quantity > 20) {
+            return "too much";
+        } else {
+            $query = mysqli_query($conn, "UPDATE carts SET quantity = $final_quantity WHERE carts.id_cart = $id_cart");
+        }
+    } else {
+        $query = mysqli_query($conn, "INSERT INTO carts VALUES( '', $id_user, $id_product, $quantity)");
+    }
+    return mysqli_affected_rows($conn);
+}
+
+// function checkout()
+// {
+// }
+
+function delCart($data)
+{
+    global $conn;
+
+    $id_cart = $data["id_cart"];
+
+    $query = mysqli_query($conn, " DELETE FROM carts WHERE id_cart = $id_cart");
+
+    return mysqli_affected_rows($conn);
+}
+
+function clearCart($data)
+{
+    global $conn;
+
+    $id_user = $data["id_user"];
+
+    $query = mysqli_query($conn, " DELETE FROM carts WHERE id_user = $id_user");
+
+    return mysqli_affected_rows($conn);
 }
 
 ?>

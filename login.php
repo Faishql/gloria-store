@@ -22,7 +22,7 @@ if (isset($_COOKIE["key"]) && isset($_COOKIE["key_name"])) {
 }
 
 if (isset($_SESSION["level"])) {
-    if ($_SESSION["level"] == "user") {
+    if ($_SESSION["level"] == "user" || $_SESSION["level"] == "guest") {
         header("Location: index.php");
         exit();
     } elseif ($_SESSION["level"] == "admin") {
@@ -45,6 +45,7 @@ if (isset($_POST["submit"])) {
                 setcookie("key_name", hash("whirlpool", $row["username"]), time() + 3600);
             }
             $_SESSION["level"] = $row["level"];
+            $_SESSION["id"] = $row["id"];
 
             if ($_SESSION["level"] === "user") {
                 header("Location: index.php");
@@ -69,7 +70,7 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style/index.css">
     
-    <title>GLORIA STORE - LOGIN</title>
+    <title>Gloria Store - Login</title>
   </head>
   <body>
   <div class="login">

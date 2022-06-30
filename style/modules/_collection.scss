@@ -1,57 +1,58 @@
-@media (min-width: 767.98px) {
-    .collections {
-        margin: 120px 0 0 0;
+// @media (min-width: 767.98px) {
+.collections {
+    margin: 120px 0 0 0;
+    padding: 0;
+    border: 1px solid $primaryColor;
+    & &-header {
+        @include header(64px, 100%, 120px);
+        text-align: center;
+    }
+    & &-filters {
+        @include header(20px, 100%, 60px);
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        p {
+            margin: 0;
+        }
+    }
+    & &-products {
         padding: 0;
-        border: 2px solid $primaryColor;
-        & &-header {
-            @include header(64px, 100%, 120px);
-            text-align: center;
+        margin-bottom: 60px;
+        width: 100%;
+        .product-item:nth-child(3n-2),
+        .product-item:nth-child(3n-1) {
+            @include product(100%, auto, 83.2%, 30px, 18px);
+            border-right: 1px solid $primaryColor;
+            border-bottom: 1px solid $primaryColor;
         }
-        & &-filters {
-            @include header(20px, 100%, 60px);
-            display: flex;
-            justify-content: space-around;
-            flex-direction: row;
-            p {
-                margin: 0;
-            }
+        .product-item:nth-child(3n + 0) {
+            @include product(100%, auto, 83.2%, 30px, 18px);
+            border-bottom: 1px solid $primaryColor;
         }
-        & &-products {
-            padding: 0;
-            margin-bottom: 60px;
-            width: 100%;
-            .product-item:nth-child(3n-2),
-            .product-item:nth-child(3n-1) {
-                @include product(320px, 320px, 83.2%, 24px);
-                border-right: 2px solid $primaryColor;
-                border-bottom: 2px solid $primaryColor;
-            }
-            .product-item:nth-child(3n + 0) {
-                @include product(320px, 320px, 83.2%, 24px);
-                border-bottom: 2px solid $primaryColor;
-            }
-            // .product-item:not(:nth-child(3n+0)) {
-            //     @include border(border-right);
-            // }
-        }
-
-        // & &-add {
-        //     @include border(border-top);
-        //     a {
-        //         @include typography(20px, 500);
-        //     }
+        // .product-item:not(:nth-child(3n+0)) {
+        //     @include border(border-right);
         // }
     }
+
+    // & &-add {
+    //     @include border(border-top);
+    //     a {
+    //         @include typography(20px, 500);
+    //     }
+    // }
 }
+// }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
     .collections {
         margin: 120px 0 0 0;
         padding: 0;
-        border: 2px solid $primaryColor;
+        border: 1px solid $primaryColor;
         & &-header {
-            @include header(32px, 100%, 90px);
+            @include header(36px, 100%, 90px);
             text-align: center;
         }
         & &-filters {
@@ -71,11 +72,10 @@
             .product-item:nth-child(3n-1),
             .product-item:nth-child(3n + 0) {
                 @include product(100%, auto, 80%, 20px, 18px);
-                border-bottom: 2px solid $primaryColor;
+                border-bottom: 1px solid $primaryColor;
+                border-right: none;
             }
-            // .product-item:not(:nth-child(3n+0)) {
-            //     @include border(border-right);
-            // }
+            //
         }
 
         // & &-add {

@@ -7,23 +7,31 @@
     box-sizing: border-box;
     font-family: "Roboto Mono", monospace;
 }
+
+a.external-link {
+    text-decoration: underline;
+    color: #3a3a3a;
+}
 body {
     width: 100%;
 }
+body.modal-open {
+    overflow-x: hidden;
+}
 
 .custom-nav {
-    height: 118px;
-    width: 90%;
-    border: 2px solid $primaryColor;
+    height: 120px;
+    width: 100%;
+    border-bottom: 1px solid $primaryColor;
     padding: 0;
     margin: 0 auto;
     a.navbar-brand {
-        @include typography(32px, 700);
+        @include typography(52px, 700);
         margin-left: 50px;
     }
     .navbar-nav {
         a.nav-link {
-            @include typography(18px, 700);
+            @include typography(20px, 500);
             padding: 0;
         }
     }
@@ -31,16 +39,26 @@ body {
         margin-right: 50px;
     }
 }
-.container {
-    width: 100%;
-    padding: 0;
 
+.container {
+    max-width: 1366px;
+    // padding: 0 60px;
+
+    .flasher-main {
+        width: 100%;
+        top: 20%;
+        z-index: 99;
+    }
     section.hero {
         div.hero-img {
             margin: 50px 0;
             width: 100%;
-            height: 420px;
-            background-color: lighten($primaryColor, 60%);
+            height: 640px;
+            background-image: url("../img/main-img.jpg");
+            // background-color: lighten($primaryColor, 60%);
+
+            background-size: cover;
+            background-position: center;
         }
     }
 
@@ -61,19 +79,20 @@ body {
                     margin-bottom: 30px;
                 }
                 .row {
-                    padding: 0 30px;
+                    padding: 0 20px;
                     width: 100%;
-                    display: flex;
+                    display: inline-flex;
                     justify-content: space-between;
                     align-items: center;
-                    // margin: 0;
-                    p {
-                        @include typography(20px, 400);
+                    margin: 5px 0;
+                    p,
+                    a {
+                        @include typography(18px, 400);
                         text-align: center;
                         margin: 0;
                     }
                     p.text-bold {
-                        @include typography(20px, 500);
+                        @include typography(18px, 500);
                     }
                 }
             }
@@ -98,12 +117,44 @@ body {
                         margin: 0;
                     }
                     p.addres {
-                        @include typography(18px, 400);
+                        @include typography(16px, 400);
                         margin-top: 10px;
                     }
                 }
             }
         }
+        .copyright {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            h2 {
+                @include typography(132px, 500);
+                letter-spacing: -3px;
+                line-height: 136px;
+                width: min-content;
+            }
+            p {
+                @include typography(18px, 500);
+                text-transform: lowercase;
+                margin-left: 60px;
+            }
+        }
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .modal-content.cart-sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .modal-content.cart-sidebar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    .modal-content.cart-sidebar {
+        overflow-y: scroll;
     }
 
     .modal-header#cart-header {
@@ -111,6 +162,55 @@ body {
         @include header(42px, 100%, 90px);
         h2 {
             margin-left: 30px;
+        }
+    }
+
+    .modal-body {
+        padding: 0 30px;
+        .cart-wrapper {
+            @include border(border-left);
+            @include border(border-right);
+            height: 100%;
+            display: inline-flex;
+            .product-cart {
+                height: 240px;
+                @include border(border-bottom);
+                img {
+                    height: 100%;
+                    width: auto;
+                    padding: 20px;
+
+                    @include border(border-right);
+                }
+                .cart-info {
+                    width: 100%;
+                    padding: 20px;
+                    h4 {
+                        @include typography(28px, 500);
+                    }
+                    p {
+                        @include typography(16px, 500);
+                        text-transform: capitalize;
+                    }
+                }
+                button {
+                    @include btn-primary(40px, 40px);
+                    float: right;
+                }
+            }
+            .product-cart:not(:first-child) {
+                margin-top: -5px;
+            }
+            .checkout-btn-wrapper {
+                @include border(border-top);
+                background-color: $bg-color;
+                bottom: 0;
+                left: 0;
+                padding: 0 30px;
+                a.checkout-btn {
+                    @include btn-primary(50px, 100%);
+                }
+            }
         }
     }
 
@@ -127,6 +227,7 @@ body {
 @import "modules/other-pages";
 @import "modules/detail";
 @import "modules/admin";
+@import "modules/checkout";
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
@@ -137,7 +238,7 @@ body {
         border: none;
         align-items: center !important;
         line-height: 90px;
-        border-bottom: 2px solid $primaryColor;
+        border-bottom: 1px solid $primaryColor;
 
         a.navbar-brand {
             @include typography(28px, 700);
@@ -152,7 +253,7 @@ body {
 
             .navbar-nav {
                 a.nav-link {
-                    @include typography(18px, 700);
+                    @include typography(18px, 500);
                     padding: 0;
                     p {
                         display: block;
@@ -164,7 +265,7 @@ body {
                 height: 60px;
                 margin-right: 0;
                 line-height: 60px;
-                border-bottom: 2px solid $primaryColor;
+                border-bottom: 1px solid $primaryColor;
                 padding: 0 20px !important;
             }
         }
@@ -174,45 +275,47 @@ body {
         padding: 0;
         margin: 0 auto;
 
+        .flasher-main {
+            top: 12%;
+        }
+
         section.hero {
             div.hero-img {
                 margin: 50px 0;
                 width: 100%;
                 height: 420px;
-                background-color: lighten($primaryColor, 60%);
             }
         }
 
         footer {
-            @include border(border-all);
-            margin: 120px 0;
             flex-direction: column;
             .wrapper {
                 border-right: none;
-                height: 100%;
                 .contact {
                     // height: 200px;
                     max-width: 100%;
-                    padding: 50px;
+                    padding: 30px;
                     text-align: center;
                     h3 {
-                        @include typography(36px, 500);
-                        margin-bottom: 30px;
+                        @include typography(42px, 500);
+                        margin-bottom: 20px;
                     }
                     .row {
                         padding: 0 30px;
                         width: 100%;
-                        display: flex;
+                        margin: 10px 0;
+                        flex-direction: column;
                         justify-content: space-around;
                         align-items: center;
                         // margin: 0;
-                        p {
-                            @include typography(18px, 400);
+                        p,
+                        a {
+                            @include typography(16px, 400);
                             text-align: center;
                             margin: 0;
                         }
                         p.text-bold {
-                            @include typography(18px, 500);
+                            @include typography(16px, 500);
                         }
                     }
                 }
@@ -223,40 +326,106 @@ body {
                     padding: 50px;
                     text-align: center;
                     h3 {
-                        @include typography(36px, 500);
+                        @include typography(42px, 500);
                         margin-bottom: 30px;
                     }
                     .row {
                         width: 100%;
-                        display: flex;
                         justify-content: center;
                         align-items: center;
                         margin: 0;
+                        padding: 0;
                         p {
                             @include typography(24px, 500);
                             margin: 0;
                         }
                         p.addres {
-                            @include typography(18px, 400);
+                            @include typography(16px, 400);
                             margin-top: 10px;
                         }
                     }
+                }
+            }
+            .copyright {
+                max-width: none;
+                padding: 30px 0;
+                display: unset;
+                @include border(border-top);
+                h2 {
+                    @include typography(56px, 500);
+                    letter-spacing: -2px;
+                    line-height: 64px;
+                    margin: 0 auto;
+                }
+                p {
+                    @include typography(14px, 500);
+                    margin-right: 20px;
+                    text-align: center;
                 }
             }
         }
 
         .modal-header#cart-header {
             padding: 0;
-            @include header(32px, 100%, 90px);
+            @include header(42px, 100%, 90px);
             h2 {
-                margin-left: 20px;
-                font-weight: 700;
+                margin-left: 30px;
             }
         }
 
-        .modal-footer {
-            button.add {
-                @include btn-primary(50px, 100%);
+        .modal-body {
+            padding: 0 30px;
+            .cart-wrapper {
+                @include border(border-left);
+                @include border(border-right);
+                min-height: 900px;
+                margin-bottom: 120px;
+                display: inline-flex;
+                .product-cart {
+                    position: relative;
+                    height: 200px;
+                    @include border(border-bottom);
+                    .img-cart-wrapper {
+                        @include border(border-right);
+                        img {
+                            height: 120px;
+                            width: auto;
+                            padding: 10px;
+                            border: none;
+                        }
+                    }
+                    .cart-info {
+                        width: 100%;
+                        padding: 20px;
+                        flex-direction: column;
+                        h4 {
+                            @include typography(20px, 500);
+                            margin-bottom: 5px;
+                        }
+                        p {
+                            @include typography(16px, 500);
+                            text-transform: capitalize;
+                        }
+                    }
+                    button {
+                        @include btn-primary(30px, 30px);
+                        position: absolute;
+                        bottom: 15px;
+                        right: 15px;
+                        float: none;
+                    }
+                }
+                .product-cart:not(:first-child) {
+                    margin-top: 0px;
+                }
+                .checkout-btn-wrapper {
+                    @include border(border-top);
+                    background-color: $bg-color;
+                    padding: 0 30px;
+                    a.checkout-btn {
+                        @include btn-primary(50px, 100%);
+                    }
+                }
             }
         }
     }

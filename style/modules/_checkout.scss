@@ -1,0 +1,19 @@
+.checkout {
+    // width: 560px;
+    // @include border(border-all);
+    // padding: 30px 0;
+    h2 {
+        @include typography(32px, 700);
+        text-transform: capitalize;
+    }
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    a.back {
+        margin: 0 auto;
+        @include btn-primary(50px, 80%);
+    }
+}
